@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand color tokens from design.md */
+  --color-text-primary: lab(2.75381 0 0);
+  --color-text-secondary: #ffffff;
+  --color-text-tertiary: lab(8.11897 0.811279 -12.254);
+  --color-text-inverse: #868e9e;
+  
+  --color-surface-base: #000000;
+  --color-surface-raised: lab(100 0 0);
+  --color-surface-strong: #2ec697;
+  
+  --color-border-default: lab(90.952 0 -0.0000119209);
+  --color-focus-ring: oklab(0.707999 -0.00000712276 0.0000166297 / 0.5);
+
+  /* Typography scale tokens from design.md */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 30px;
+  --text-3xl: 36px;
+  --text-4xl: 48px;
+
+  /* Spacing scale tokens from design.md */
+  --spacing-space-1: 4px;
+  --spacing-space-2: 8px;
+  --spacing-space-3: 12px;
+  --spacing-space-4: 16px;
+  --spacing-space-5: 20px;
+  --spacing-space-6: 24px;
+  --spacing-space-7: 32px;
+  --spacing-space-8: 48px;
+
+  /* Border radius tokens from design.md */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+
+  /* Transition duration tokens from design.md */
+  --animate-instant: 150ms ease;
+  --animate-fast: 300ms ease;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
 }
+
