@@ -5,6 +5,83 @@ import { useRouter } from 'next/navigation';
 import { Shield, MapPin, ClipboardList, Navigation, ArrowRight, Zap, Check, AlertCircle, RefreshCw } from 'lucide-react';
 import { RahaAssistant } from '../components/RahaAssistant';
 
+const PARTNER_LOGOS = [
+  {
+    name: 'HDFC ERGO',
+    svg: (
+      <svg viewBox="0 0 120 30" className="h-6 w-auto text-slate-400 fill-current">
+        <rect x="0" y="5" width="20" height="20" rx="4" className="text-emerald-500 fill-current" />
+        <text x="5" y="19" fill="#000000" fontSize="13" fontWeight="bold" fontFamily="sans-serif">H</text>
+        <text x="26" y="16" fontSize="11" fontWeight="extrabold" fontFamily="sans-serif">HDFC</text>
+        <text x="26" y="25" fontSize="8" fontWeight="bold" className="text-emerald-400 fill-current" fontFamily="sans-serif">ERGO</text>
+      </svg>
+    )
+  },
+  {
+    name: 'ICICI Lombard',
+    svg: (
+      <svg viewBox="0 0 120 30" className="h-6 w-auto text-slate-400 fill-current">
+        <circle cx="12" cy="15" r="9" className="text-indigo-500 fill-current" />
+        <path d="M9 15 L12 18 L15 12" stroke="white" strokeWidth="2" fill="none" />
+        <text x="26" y="16" fontSize="11" fontWeight="extrabold" fontFamily="sans-serif">ICICI</text>
+        <text x="26" y="25" fontSize="8" fontWeight="medium" className="text-indigo-400 fill-current" fontFamily="sans-serif">LOMBARD</text>
+      </svg>
+    )
+  },
+  {
+    name: 'Tata AIG',
+    svg: (
+      <svg viewBox="0 0 120 30" className="h-6 w-auto text-slate-400 fill-current">
+        <polygon points="12,5 5,23 19,23" className="text-blue-500 fill-current" />
+        <text x="26" y="16" fontSize="11" fontWeight="extrabold" fontFamily="sans-serif">TATA</text>
+        <text x="26" y="25" fontSize="8" fontWeight="black" className="text-blue-400 fill-current" fontFamily="sans-serif">AIG</text>
+      </svg>
+    )
+  },
+  {
+    name: 'Bajaj Allianz',
+    svg: (
+      <svg viewBox="0 0 120 30" className="h-6 w-auto text-slate-400 fill-current">
+        <path d="M5 20 L12 8 L19 20 Z" className="text-amber-500 fill-current" />
+        <text x="26" y="16" fontSize="11" fontWeight="extrabold" fontFamily="sans-serif">BAJAJ</text>
+        <text x="26" y="25" fontSize="8" fontWeight="medium" className="text-amber-400 fill-current" fontFamily="sans-serif">Allianz</text>
+      </svg>
+    )
+  },
+  {
+    name: 'SBI General',
+    svg: (
+      <svg viewBox="0 0 120 30" className="h-6 w-auto text-slate-400 fill-current">
+        <circle cx="12" cy="15" r="9" className="text-sky-500 fill-current" />
+        <rect x="10" y="6" width="4" height="18" fill="white" />
+        <text x="26" y="16" fontSize="11" fontWeight="extrabold" fontFamily="sans-serif">SBI</text>
+        <text x="26" y="25" fontSize="8" fontWeight="medium" className="text-sky-400 fill-current" fontFamily="sans-serif">General</text>
+      </svg>
+    )
+  },
+  {
+    name: 'LIC',
+    svg: (
+      <svg viewBox="0 0 120 30" className="h-6 w-auto text-slate-400 fill-current">
+        <circle cx="12" cy="15" r="9" className="text-yellow-500 fill-current" />
+        <text x="9" y="18" fill="#000" fontSize="9" fontWeight="black" fontFamily="sans-serif">L</text>
+        <text x="26" y="16" fontSize="11" fontWeight="extrabold" fontFamily="sans-serif">LIC</text>
+        <text x="26" y="25" fontSize="7" fontWeight="bold" className="text-yellow-400 fill-current" fontFamily="sans-serif">OF INDIA</text>
+      </svg>
+    )
+  },
+  {
+    name: 'Reliance General',
+    svg: (
+      <svg viewBox="0 0 120 30" className="h-6 w-auto text-slate-400 fill-current">
+        <rect x="3" y="6" width="18" height="18" rx="2" className="text-rose-500 fill-current" />
+        <text x="26" y="16" fontSize="10" fontWeight="extrabold" fontFamily="sans-serif">RELIANCE</text>
+        <text x="26" y="25" fontSize="8" fontWeight="medium" className="text-rose-400 fill-current" fontFamily="sans-serif">General</text>
+      </svg>
+    )
+  }
+];
+
 export const LandingPage: React.FC = () => {
   const router = useRouter();
 
@@ -155,6 +232,47 @@ export const LandingPage: React.FC = () => {
                 <p className="text-2xl font-bold text-surface-strong">Secure</p>
                 <p className="text-[10px] font-semibold text-text-inverse uppercase tracking-wider">Role Access</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Scrolling Marquee Section */}
+      <section className="border-b border-border-default/10 py-space-6 bg-surface-base/30 overflow-hidden select-none">
+        <div className="max-w-7xl mx-auto px-space-6 text-center mb-space-3">
+          <p className="text-[10px] font-bold text-text-inverse uppercase tracking-widest">
+            Trusted by Leading Insurance Partners
+          </p>
+        </div>
+
+        <div className="relative w-full overflow-hidden py-space-2 bg-gradient-to-r from-transparent via-slate-950/20 to-transparent">
+          {/* Edge shadow masks */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling logo containers */}
+          <div className="animate-marquee-paused overflow-hidden flex">
+            <div className="animate-marquee flex items-center space-x-16 pr-16">
+              {PARTNER_LOGOS.map((logo, idx) => (
+                <div 
+                  key={`logo-1-${idx}`} 
+                  className="flex items-center justify-center grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-105 cursor-pointer text-text-secondary h-10 w-28"
+                  title={logo.name}
+                >
+                  {logo.svg}
+                </div>
+              ))}
+            </div>
+            <div className="animate-marquee flex items-center space-x-16 pr-16" aria-hidden="true">
+              {PARTNER_LOGOS.map((logo, idx) => (
+                <div 
+                  key={`logo-2-${idx}`} 
+                  className="flex items-center justify-center grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-105 cursor-pointer text-text-secondary h-10 w-28"
+                  title={logo.name}
+                >
+                  {logo.svg}
+                </div>
+              ))}
             </div>
           </div>
         </div>
