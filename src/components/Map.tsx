@@ -23,25 +23,25 @@ export const Map: React.FC<MapProps> = ({ startLocation, endLocation, activities
     if (!mapContainerRef.current) return;
     if (!startLocation || typeof startLocation.lat !== 'number' || typeof startLocation.lng !== 'number') return;
 
-    let map = mapInstanceRef.current;
+    let existingMap = mapInstanceRef.current;
 
-    if (map && mapContainerRef.current && map.getContainer() !== mapContainerRef.current) {
+    if (existingMap && mapContainerRef.current && existingMap.getContainer() !== mapContainerRef.current) {
       try {
-        map.remove();
+        existingMap.remove();
       } catch (e) {
         console.warn('Failed to remove orphaned map instance:', e);
       }
-      map = null;
+      existingMap = null;
       mapInstanceRef.current = null;
     }
 
-    if (!map) {
-      map = L.map(mapContainerRef.current, {
-        zoomAnimation: false,
-        fadeAnimation: false,
-        markerZoomAnimation: false,
-      }).setView([startLocation.lat, startLocation.lng], 13);
+    const map = existingMap || L.map(mapContainerRef.current, {
+      zoomAnimation: false,
+      fadeAnimation: false,
+      markerZoomAnimation: false,
+    }).setView([startLocation.lat, startLocation.lng], 13);
 
+    if (!existingMap) {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',

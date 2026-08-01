@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Shield, MapPin, ClipboardList, Navigation, ArrowRight, Zap, Check, AlertCircle, RefreshCw } from 'lucide-react';
+import { RahaAssistant } from '../components/RahaAssistant';
 
 export const LandingPage: React.FC = () => {
   const router = useRouter();
@@ -395,6 +396,7 @@ export const LandingPage: React.FC = () => {
         </div>
       </footer>
 
+      <RahaAssistant />
     </div>
   );
 };

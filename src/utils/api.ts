@@ -24,3 +24,24 @@ export async function apiRequest(path: string, options: RequestInit = {}) {
 
   return response;
 }
+
+export async function requestPayout(dateStr: string, distanceKm: number, notes?: string) {
+  const response = await apiRequest('/api/payouts', {
+    method: 'POST',
+    body: JSON.stringify({ dateStr, distanceKm, notes }),
+  });
+  return response.json();
+}
+
+export async function getPayoutRequests() {
+  const response = await apiRequest('/api/payouts');
+  return response.json();
+}
+
+export async function updatePayoutStatus(requestId: string, status: string) {
+  const response = await apiRequest(`/api/payouts/${requestId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status }),
+  });
+  return response.json();
+}
